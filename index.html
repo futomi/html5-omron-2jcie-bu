@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMRON 環境センサ（USB型）形2JCIE-BU01 モニター</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main>
+    <header class="section pt-5 pb-5">
+      <div class="container">
+        <h1 class="title">OMRON 環境センサ モニター</h1>
+      </div>
+    </header>
+    <div class="section pt-3">
+      <div class="container">
+
+        <div class="is-clearfix">
+          <figure class="image is-96x96 is-pulled-left">
+            <img src="omron-2jcie-bu.png" alt="">
+          </figure>
+          <div class="is-pulled-left ml-4 mt-3">
+            <div id="supported" hidden>
+              <button id="req-btn" class="button is-primary is-rounded">接続する</button>
+            </div>
+            <div id="notsupported" hidden>
+              <p class="has-text-danger">このブラウザーは Web Serial API をサポートしていません。</p>
+            </div>
+          </div>
+        </div>
+        <div class="columns mt-5">
+          <div class="column">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  <span class="icon"><i class="far fa-clock mr-2"></i></span>
+                  計測時刻
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <span id="timestamp" class="is-size-3">-</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  <span class="icon"><i class="fas fa-temperature-high mr-2"></i></span>
+                  温度
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <span id="temperature" class="is-size-3">-</span> ℃
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  <span class="icon"><i class="fas fa-tint mr-2"></i></span>
+                  湿度
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <span id="humidity" class="is-size-3">-</span> %RH
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  <span class="icon"><i class="fas fa-sun mr-2"></i></span>
+                  照度
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <span id="anbient_light" class="is-size-3">-</span> lx
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  <span class="icon"><i class="fas fa-cloud-sun-rain mr-2"></i></span>
+                  大気圧
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <span id="pressure" class="is-size-3">-</span> hPa
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  <span class="icon"><i class="fas fa-volume-up mr-2"></i></span>
+                  騒音
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <span id="noise" class="is-size-3">-</span> dB
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  <span class="icon"><i class="fas fa-air-freshener mr-2"></i></span>
+                  eTVOC
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <span id="etvoc" class="is-size-3">-</span> ppb
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  <span class="icon"><i class="fas fa-head-side-cough mr-2"></i></span>
+                  eCO2
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <span id="eco2" class="is-size-3">-</span> ppm
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  <span class="icon"><i class="far fa-grin-beam-sweat mr-2"></i></span>
+                  不快指数
+                </p>
+              </header>
+              <div id="discomfort_index_cont" class="card-content has-background-primary-light">
+                <div class="content">
+                  <span id="discomfort_index" class="is-size-3">-</span>
+                  <small id="discomfort_index_desc"></small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">
+                  <span class="icon"><i class="fas fa-sun mr-2"></i></span>
+                  熱中症警戒度
+                </p>
+              </header>
+              <div id="heat_stroke_cont" class="card-content has-background-primary-light">
+                <div class="content">
+                  <span id="heat_stroke" class="is-size-3">-</span>
+                  <small id="heat_stroke_desc"></small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer pt-4 pb-4">
+    <div class="content has-text-centered">
+      <div><small>&copy <a href="https://github.com/futomi">Futomi Hatano</a></small></div>
+      <div>
+        <small>
+          The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+        </small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
