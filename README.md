@@ -21,6 +21,11 @@ OMRON 環境センサ モニターは、[Web Serial API](https://wicg.github.io/
 
 本リポジトリのディレクトリをローカルに保存し、index.html をブラウザーにドロップしてください。または、ディレクトリをウェブサイトにアップロードして index.html にアクセスしてください。なお、SSL ページでないと動作しませんので注意してください。
 
+## サンプル
+
+こちらのページでサンプルをご覧になれます。
+- https://www.html5.jp/html5-omron-2jcie-bu/index.html
+
 ## 履歴
 
 - 2021-11-11
